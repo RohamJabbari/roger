@@ -1,0 +1,107 @@
+id;start;end;speaker;text;start_sec;end_sec;text_level1;text_level2;question;stress
+1;00:00:03:38;00:00:05:02;1;Hier ist dann dunkel. (lacht);2;5;dunkel;dann dunkel;0.0;0.15
+2;00:00:05:70;00:00:08:35;3;Ja, bei mir auch glaub. (6) (Husten) (4);6;8;;bei mir auch;0.0;0.31
+3;00:00:08:46;00:00:10:99;2;Ay, Achtung, jetzt aber.;8;11;Achtung;Achtung, jetzt;0.0;0.28
+4;00:00:11:03;00:00:11:52;3;Okay. Pascü?;11;12;Pascü?;Okay, Pascü?;1.0;0.4
+5;00:00:11:60;00:00:12:06;1;Ja, ich bin hier.;12;12;;bin hier;0.0;0.32
+6;00:00:12:06;00:00:12:45;2;Okay, Türe// links.;12;12;Türe, Links;Türe, Links;0.0;0.07
+7;00:00:12:60;00:00:14:46;3;(unv. #00:00:47-1#)//;13;14;;;0.0;0.4
+8;00:00:14:46;00:00:15:89;3;Ihr hört auch nichts, dass noch geschossen wird, oder?;14;16;geschossen?;noch geschossen?;1.0;0.41
+9;00:00:15:89;00:00:16:31;1;Nein. (.) No/ Rechts.;16;16;Nein, Rechts;Nein, Rechts;0.0;0.36
+10;00:00:16:31;00:00:17:92;2;Rechts // Türe sein lassen.;16;18;Rechts, Türe;Rechts, Türe lassen;0.0;0.07
+11;00:00:17:92;00:00:18:24;1;Von mir// (.);18;18;;von mir;0.0;0.37
+12;00:00:18:24;00:00:20:95;2;Dann schauen wir weiter. Achtung. (..);18;21;Achtung;weiter, Achtung;0.0;0.08
+13;00:00:21:67;00:00:30:21;1;Polizei, Hände rauf! Macht die Hände rauf! (Geflüster) (4). Gut, da ist niemand / (..);22;30;Polizei, Hände rauf;Polizei, Hände rauf, niemand;;0.38
+14;00:00:30:51;00:00:31:73;3;Geht auf die Seite. Geht auf die Seite.;31;32;Seite;Geht auf Seite;0.0;0.18
+15;00:00:32:10;00:00:33:68;2;Was wollen wir? Wie wollen wir?;32;34;wollen?;wollen wir? wie?;1.0;0.1
+16;00:00:33:68;00:00:38:54;3;Ich gehe hier rein. (4);34;39;rein;gehe rein;0.0;0.17
+17;00:00:38:54;00:00:39:29;1;Links// haben wir noch die Türe.;39;39;links, Türe;links, Türe;0.0;0.39
+18;00:00:39:34;00:00:39:43;3;(Gut?);39;39;;gut?;1.0;0.12
+19;00:00:39:54;00:00:40:43;1;Links haben wir / Ja, das ist gut.;40;40;links;links, gut;0.0;0.38
+20;00:00:40:57;00:00:41:29;2;Links. (.);41;41;links;links;0.0;0.38
+21;00:00:42:26;00:00:43:04;3;Geht da mal ein bisschen zurück.;42;43;zurück;geht zurück;0.0;0.11
+22;00:00:43:04;00:00:47:65;2;Wie wollen wir? Geh, komm, wir gehen von der gleichen Seite. Ja. (..);43;48;Wie? Gleiche Seite;Wie? Von gleichen Seiten;1.0;0.4
+23;00:00:47:65;00:00:47:90;1;Achtung!;48;48;Achtung;Achtung;0.0;0.37
+24;00:00:47:90;00:00:48:76;3;Hörst du etwas, (unv.)? (.);48;49;Hörst;Hörst du;1.0;0.13
+25;00:00:49:07;00:00:55:43;1;Polizei! Hände rauf! (4) Macht die Hände rauf! (...);49;55;Polizei, Hände rauf;Polizei, Macht Hände rauf;0.0;0.39
+26;00:00:58:25;00:00:59:15;2;Achtung. (.);58;59;Achtung;Achtung;0.0;0.4
+27;00:00:59:85;00:01:00:57;1;Bei mir ist save!;60;61;save;save;0.0;0.29
+28;00:01:00:96;00:01:01:59;2;Hände rauf! (..);61;62;Hände;Hände rauf;0.0;0.4
+29;00:01:03:21;00:01:07:85;1;Bei mir ist save! Ich komme zurück. (..) Die Waffen// von denen habe ich genommen.;63;68;save, Waffe;save, zurück, Waffe genommen;0.0;0.29
+30;00:01:07:93;00:01:08:01;3;(unv.)//;68;68;;;0.0;0.35
+31;00:01:08:15;00:01:09:26;1;Ich nehme die Waffe. (.);68;69;Waffe;Waffe;0.0;0.28
+32;00:01:10:43;00:01:10:87;2;Sehr gut.;70;71;;sehr gut;0.0;0.4
+33;00:01:11:50;00:01:13:68;1;Ich komme nach vorne. (.) Ich komme wieder vorbei.;71;74;Komme;komme vorne, komme vorbei;0.0;0.28
+34;00:01:13:68;00:01:14:10;3;Gut. Nach vorne!;74;74;;gut, vorne;0.0;0.38
+35;00:01:14:12;00:01:14:90;2;Achtung, ich komme nach vorne.;74;75;Achtung;Achtung, komme vorne;0.0;0.4
+36;00:01:14:90;00:01:16:90;3;Wir haben hier noch eine Türe. Nach vorne! (.);75;77;Türe, vorne;Türe, nach vorne;0.0;0.34
+37;00:01:18:20;00:01:18:40;2;Nach vorne.;78;78;;nach vorne;0.0;0.39
+38;00:01:18:81;00:01:19:29;3;Seid ihr hier? (...);79;79;;ihr hier?;1.0;0.34
+39;00:01:19:29;00:01:22:62;1;(unv.) gehst du nachher das Treppenhaus hinauf?;79;83;Treppenhaus;Treppenhaus hinauf;1.0;0.29
+40;00:01:22:68;00:01:26:56;3;Ja, ich habe hier noch ein WC. Ist gut. (.) Treppenhaus.;83;87;;WC, Treppenhaus;0.0;0.3
+41;00:01:26:56;00:01:26:90;1;Treppenhaus /;87;87;;Treppenhaus;0.0;0.21
+42;00:01:26:90;00:01:29:31;2;Draussen ist einer. (...);87;89;;Draussen;0.0;0.39
+43;00:01:29:77;00:01:30:33;3;Gut, Treppenhaus!;90;90;;Treppenhaus;0.0;0.25
+44;00:01:30:33;00:01:31:46;1;Komm nach vorne, da geht es nach draussen.;90;91;;Komm vorne, draussen;0.0;0.19
+45;00:01:31:81;00:01:36:77;3;Treppenhaus ist zu. (...) Also es ist noch// jemand oben.;92;97;Treppenhaus;Treppenhaus zu, oben;0.0;0.25
+46;00:01:36:77;00:01:39:41;1;(Der gleiche?) mit dem Messer oben. Kannst nach oben, (unv. #00:02:18-1#);97;99;Messer;Messer oben;0.0;0.11
+47;00:01:40:00;00:01:56:65;3;Ja, jetzt müssen wir glaub hier warten, oder? (4) (Flüstern) (10);100;117;warten;hier warten;1.0;0.2
+48;00:01:56:87;00:01:58:43;1;(unv.) du hast auch mitbekommen, einer mit Messer.;117;118;Messer;mitbekommen, Messer;1.0;0.08
+49;00:01:58:43;00:01:59:83;3;Ja, habe ich mitbekommen. Gut.;118;120;;mitbekommen;0.0;0.07
+50;00:01:59:83;00:02:01:11;2;Ja. Gehört.;120;121;;gehört;0.0;0.31
+51;00:02:01:93;00:02:03:65;1;Also ich gehe mal einfach voraus. Ihr kommt nach. (..);122;124;;voraus, kommt nacht;0.0;0.09
+52;00:02:03:65;00:02:07:63;3;Ja, wenn wir dann orten können, können wir zügig gehen.;124;128;;zügig gehen;0.0;0.02
+53;00:02:07:68;00:02:07:81;1;Ja.;128;128;;;0.0;0.15
+54;00:02:08:50;00:02:10:65;3;Und dann rechts, links in die Räume. (..);129;131;;Räume;0.0;0.02
+55;00:02:12:87;00:02:14:11;1;Sind wir jetzt im ersten Stock? (.);133;134;;ersten Stock?;1.0;0.19
+56;00:02:15:43;00:02:15:96;3;Ich glaube schon.;135;136;;Glaube schon;0.0;0.07
+57;00:02:15:96;00:02:17:36;2;Keine Ahnung. Ich glaube schon, ja.;136;137;;Keine Ahnung;0.0;0.34
+58;00:02:17:61;00:02:17:77;1;Gut.;138;138;;;0.0;0.19
+59;00:02:18:13;00:02:18:55;2;Genau// Achtung, Türe.;138;139;Achtung Türe;Achtung Türe;0.0;0.33
+60;00:02:18:55;00:02:20:59;3;Links // haben wir gerade eine Türe. (..);139;141;;Links Türe;0.0;0.1
+61;00:02:20:59;00:02:21:30;2;Ich schaue// mache es auf.;141;141;;schaue;0.0;0.33
+62;00:02:21:41;00:02:21:93;3;Links// gerade auf.;141;142;;Links gerade;0.0;0.12
+63;00:02:22:30;00:02:22:80;1;Also warte. (..);142;143;;warte;0.0;0.19
+64;00:02:24:86;00:02:25:25;2;Sauber.;145;145;;sauber;0.0;0.35
+65;00:02:26:52;00:02:29:31;1;Polizei, Hände rauf! Kommt heraus, kommt heraus! (.) Kommt auf die Seite!;147;149;Polizei, Hände rauf;Polizei, Hände rauf, Seite;0.0;0.23
+66;00:02:30:34;00:02:32:27;2;Kommt auf die Seite, kommt dorthin, kommt heraus.;150;152;;Kommt;0.0;0.37
+67;00:02:32:30;00:02:36:84;3;Treppenhaus nach unten, Treppenhaus nach unten! Gut, rechts haben wir eine Türe!;152;157;Treppenhaus unten;Treppenhaus unten, rechts Türe;0.0;0.29
+68;00:02:36:84;00:02:38:71;2;Türe, rechts.// Ich gehe sie gleich aufmachen.;157;159;;Türe rechts;0.0;0.38
+69;00:02:38:71;00:02:39:46;3;Gehst du rechts aufmachen.;159;159;;rechts;0.0;0.29
+70;00:02:39:58;00:02:40:16;1;Ist gut, ja. (4);160;160;;Ist gut;0.0;0.26
+71;00:02:45:02;00:02:48:00;2;Sauber. (...) Gehen wir weiter. (..);165;168;;sauber;0.0;0.41
+72;00:02:49:40;00:02:50:87;3;Wie sieht es aus? Links, rechts?;169;171;;Links rechts?;1.0;0.27
+73;00:02:50:87;00:02:52:09;2;Rechts ist / Rechts ist gut.;171;172;;Rechts gut;0.0;0.41
+74;00:02:52:59;00:02:54:08;1;Bei mir ist auch gut, ja. Du kannst /;173;174;;auch gut, kannst;0.0;0.33
+75;00:02:54:11;00:02:55:12;2;Ich gehe in den Raum hineinschauen.;174;175;;Raum hineinschauen;0.0;0.41
+76;00:02:55:65;00:02:56:18;3;Ja. (.);176;176;;Ja;0.0;0.2
+77;00:02:58:02;00:02:58:77;2;Hier ist sauber. (...);178;179;;sauber;0.0;0.42
+78;00:03:01:37;00:03:01:78;3;Du kannst. (..);181;182;;Kannst;0.0;0.2
+79;00:03:03:65;00:03:07:25;3;(unv. #00:03:43-1#) gut. (..);184;187;;;0.0;0.2
+80;00:03:07:25;00:03:31:12;2;St / Hände rauf! Stopp, alle die Hände rauf! Hände rauf! (.) (Flüstern) Hinauskommen! Kommt hinaus! (5) Ist sauber. (.) Kommt ihr auch hinaus? Hände hinter den Rücken! Hände rauf halten! Hände rauf halten! (4) Ist gut.;187;211;Stopp, Hände rauf;Stopp, Hände rauf, Hinauskommen;0.0;0.48
+81;00:03:31:27;00:03:31:75;3;Ist noch jemand drin?;211;212;;Jemand drin?;1.0;0.19
+82;00:03:32:16;00:03:33:43;2;Ist eine Frau drinnen, ja.;212;213;Frau;Frau drinnen;0.0;0.47
+83;00:03:34:06;00:03:36:12;3;Gut, dann können wir aber// we/ wö/ verlaufen, ja.;214;216;;Verlaufen;0.0;0.18
+84;00:03:36:12;00:03:36:75;2;Weiter// Super.;216;217;;Weiter;0.0;0.47
+85;00:03:36:75;00:03:43:13;1;Also ich gehe weiter, ist gut? (...) Polizei, Hände rauf! Hände rauf! (...);217;223;Polizei, Hände rauf;Polizei, Hände rauf;0.0;0.33
+86;00:03:43:13;00:03:43:31;2;(lacht) (..);223;223;;;0.0;0.45
+87;00:03:43:41;00:03:43:88;1;Ist gut, save.;223;224;;save;0.0;0.31
+88;00:03:51:35;00:03:53:18;2;Ist gut.;231;233;;Ist gut;0.0;0.45
+89;00:03:53:44;00:03:53:73;3;Ist gut?;233;234;;Ist gut?;1.0;0.27
+90;00:03:54:17;00:03:54:38;1;Ja. (..);234;234;;Ja;0.0;0.29
+91;00:03:56:88;00:03:57:13;2;Achtung//;237;237;Achtung;Achtung;0.0;0.44
+92;00:03:57:13;00:04:39:31;3;(unv.) 65. (4) Okay, im EG haben wir eine Person Schuss/ mit einer Schusswaffe neutralisiert, Waffe sichergestellt. Im ersten OG eine männliche Person neutralisiert nach Messerangriff auf die Polizei. (.) Messer ist sichergestellt. Bräuchte zwei Ambulanzen. Minimum. (Flüstern) (9) Okay. Habt ihr sonst noch Meldungen bekommen? Dass irgendwie noch mehr Leute im Gebäude sind? (..) Oben ist leer, oder? (Flüstern) (4) Okay.;237;279;Person, Schuss, Schusswaffe;Person, Schuss, Schusswaffe;0.0;0.32
+93;00:04:39:31;00:04:39:42;2;Okay.;279;279;;Okay;0.0;0.28
+94;00:04:40:00;00:04:40:67;1;Ihr seid alle gut?;280;281;;Alle gut?;1.0;0.06
+95;00:04:40:67;00:04:42:41;2;Ja. Alles gut.;281;282;;Alles gut;0.0;0.28
+96;00:04:43:48;00:04:47:60;3;Ja, bei mir ist gut. Wollen wir den fesseln? Und nachher schauen wir, ob es noch ein drittes OG gibt.;283;288;Fesseln, drittes OG;Fesseln, drittes OG;1.0;0.17
+97;00:04:47:66;00:04:49:25;1;Ja, wir fesseln den. (.) Willst du?;288;289;Fesseln;Fesseln;1.0;0.05
+98;00:04:49:35;00:04:51:22;3;(unv. #00:05:29-1#)?;289;291;;;0.0;0.16
+99;00:04:51:25;00:04:51:81;1;Ich mache.;291;292;;Ich mache;0.0;0.04
+100;00:04:51:85;00:04:54:22;2;Ich glaube es. (5);292;294;;Glaube es;0.0;0.19
+101;00:04:58:19;00:05:07:38;1;Geht nicht. (lacht) (.) Auch gut, merci. (..) Gut. (.) Dann gehen wir zum Lift oder// zum Treppenhaus.;298;307;Lift, Treppen;Lift, Treppen;0.0;0.14
+102;00:05:07:38;00:05:07:93;2;Wieder nach unten, oder?//;307;308;nach unten;nach unten;1.0;0.16
+103;00:05:07:93;00:05:08:69;3;Zur Treppe.;308;309;Treppe;Treppe;0.0;0.25
+104;00:05:08:69;00:05:09:35;1;Zur Treppe.;309;309;Treppe;Treppe;0.0;0.18
+105;00:05:09:35;00:05:11:32;2;Treppenhaus, oder? (..);309;311;Treppenhaus?;Treppenhaus?;1.0;0.16
+106;00:05:13:23;00:05:16:67;3;Dürfen wir in den dritten Stock? (..) Wenn es einen gibt.;313;317;Dritten Stock;Dürfen dritten Stock;1.0;0.38

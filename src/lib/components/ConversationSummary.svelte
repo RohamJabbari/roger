@@ -2,8 +2,6 @@
   import StackedBarChart from "$lib/components/StackedBarChart.svelte";
   import {
     aggregatedData,
-    aggregatedMotifsData,
-    rogerMotifs,
     radarData
   } from "$lib/stores/app";
   import {

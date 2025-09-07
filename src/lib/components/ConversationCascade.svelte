@@ -2,7 +2,7 @@
   import { scaleBand } from "d3-scale";
   import { speakerColorScale } from "$lib/stores/speaker";
   import { createEventDispatcher } from "svelte";
-  import { rogerTime, rogerMotifs, rogerMotifsPresentation } from "$lib/stores/app";
+import { rogerTime } from "$lib/stores/app";
   import { onMount } from "svelte";
   import SamGlyph from "./SamGlyph.svelte";
   import { showEmotions } from '$lib/stores/app';
@@ -123,13 +123,6 @@
     }, 100);
   });
 
-  function getHighlightClasses(message) {
-    if ($rogerMotifs?.length > 0 && $rogerMotifsPresentation === 'highlight') {
-      return message.highlight === true ? 'ring-2 ring-gray-700 rounded-tl-lg rounded-r-lg' : 'opacity-40';
-    }
-
-    return '';
-  }
 </script>
 
 <div
@@ -138,7 +131,7 @@
 >
   {#each data as message, index (message.id)}
     <div
-      class="drop-shadow flex message absolute {getHighlightClasses(message)}"
+      class="drop-shadow flex message absolute"
       style="min-width: 360px; max-width: {speakerColumnScale.bandwidth()}px; top: {positions[message.id]?.top || 0}px; left: {speakerColumnScale(positions[message.id]?.speaker)}px;"
       bind:this={messageElements[index]}
       data-start={message.start}

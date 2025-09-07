@@ -1,7 +1,7 @@
 <script>
   import { speakerColorScale } from "$lib/stores/speaker";
   import { createEventDispatcher } from "svelte";
-  import { rogerTime, rogerMotifs, rogerMotifsPresentation } from "$lib/stores/app";
+  import { rogerTime } from "$lib/stores/app";
   import { Tooltip } from "flowbite-svelte";
   import { secondsToTime } from "$lib/utils";
   import MessageBox from "$lib/components/rohams-suggestions/MessageBox.svelte";
@@ -46,20 +46,6 @@
 
   function isWithinTimeRange(start, currentTime) {
     return Math.abs(start - currentTime) <= 5;
-  }
-
-  function getHighlightClassesLeft(message) {
-    if ($rogerMotifs?.length > 0 && $rogerMotifsPresentation === 'highlight') {
-      return message.highlight === true ? 'border-y-2 border-l-2 border-gray-700 rounded-tl-lg' : 'opacity-40';
-    }
-    return '';
-  }
-
-  function getHighlightClassesRight(message) {
-    if ($rogerMotifs?.length > 0 && $rogerMotifsPresentation === 'highlight') {
-      return message.highlight === true ? 'border-y-2 border-r-2 border-gray-700 rounded-r-lg' : 'opacity-40';
-    }
-    return '';
   }
 
   // NEW: handle user-driven scroll to disable auto-follow

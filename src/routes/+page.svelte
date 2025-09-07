@@ -8,13 +8,13 @@
       aggregateStressData,
       topicList
   } from "$lib/dataProcessing";
-  import { MotifFilter } from '$lib/motif-filter/MotifFilter.js';
+  // import { MotifFilter } from '$lib/motif-filter/MotifFilter.js';
   import Header from "$lib/components/header/Header.svelte";
   import ConversationCascade from "$lib/components/ConversationCascade.svelte";
   import ConversationLog from "$lib/components/ConversationLog.svelte";
   import ConversationSummary from "$lib/components/ConversationSummary.svelte";
   import CommunicationTimeline from "$lib/components/communication-timeline/CommunicationTimeline.svelte";
-  import MotifsModal from "$lib/components/motifs-modal/MotifsModal.svelte";
+  // import MotifsModal from "$lib/components/motifs-modal/MotifsModal.svelte";
   import RogerAudioPlayer from "$lib/components/roger-audio-player/RogerAudioPlayer.svelte";
   import SpeakersFilter from "$lib/components/header/SpeakersFilter.svelte";
   import ViewToggle from "$lib/components/header/ViewToggle.svelte";
@@ -30,15 +30,15 @@
     datasets,
     filteredData,
     aggregatedData,
-    aggregatedMotifsData,
+    // aggregatedMotifsData,
     filterTimeRange,
     rogerMode,
     rogerStress,
     rogerRecording,
-    rogerMotifs,
+    // rogerMotifs,
     rogerSpeaker,
-    rogerMotifsCombination,
-    rogerMotifsPresentation,
+    // rogerMotifsCombination,
+    // rogerMotifsPresentation,
     filterSearchString,
     conversationPosition, radarData,
   } from "$lib/stores/app";
@@ -48,7 +48,7 @@
 
   import VideoPlayerWindow from "$lib/components/VideoPlayerWindow.svelte";
   import { ComponentWindow } from "$lib/ComponentWindow.js";
-  import OpenMotifsButton from "$lib/components/header/OpenMotifsButton.svelte";
+  // import OpenMotifsButton from "$lib/components/header/OpenMotifsButton.svelte";
   import BinSizeInput from "$lib/components/header/BinSizeInput.svelte";
   import ContextualConversationPanel from "$lib/components/contextual-conversation-panel/ContextualConversationPanel.svelte";
   import SamGlyphChart from "../lib/components/SamGlyphChart.svelte";
@@ -58,7 +58,7 @@
 
   const debugMode = false;
 
-  let motifFilter;
+  // let motifFilter;
 
   let totalDuration = 0;
   let speakers = [];
@@ -73,7 +73,7 @@
   let showVideo = false;
   let showStress = true;
 
-  let showMotifsModal;
+  // let showMotifsModal;
 
   let sidebarWidth = 320; // default width in pixels
   let isResizing = false;
@@ -228,7 +228,7 @@
       console.log('check eventRanges data', $datasets.eventRanges);
     }
 
-    motifFilter = new MotifFilter($datasets);
+    // motifFilter = new MotifFilter($datasets);
   });
 
   onDestroy(() => {
@@ -327,15 +327,15 @@
     $filteredData.transcript = $datasets.transcript.filter((d) => {
       let filter = true;
 
-      if ($rogerMotifs && $rogerMotifsPresentation === 'filter') {
-        $rogerMotifs.forEach((motif) => {
-          if ($rogerMotifsCombination == "inclusive") {
-            filter = motif.messages.includes(d.id);
-          } else {
-            filter = filter && motif.messages.includes(d.id);
-          }
-        });
-      }
+      // if ($rogerMotifs && $rogerMotifsPresentation === 'filter') {
+      //   $rogerMotifs.forEach((motif) => {
+      //     if ($rogerMotifsCombination == "inclusive") {
+      //       filter = motif.messages.includes(d.id);
+      //     } else {
+      //       filter = filter && motif.messages.includes(d.id);
+      //     }
+      //   });
+      // }
 
       if ($filterTimeRange) {
         filter = filter && d.start >= $filterTimeRange[0] && d.end <= $filterTimeRange[1];
@@ -357,15 +357,15 @@
     $aggregatedData.speakers = aggregateSpeakerData($filteredData.transcript);
     // console.log('speakers agg', $aggregatedData.speakers);
 
-    if ($rogerMotifs && $rogerMotifsPresentation === 'highlight') {
-      $filteredData.transcript.forEach((d) => {
-        d.highlight = $rogerMotifs.some((motif) => motif.messages.includes(d.id));
-      });
-    } else {
-      $filteredData.transcript.forEach((d) => {
-        d.highlight = false;
-      });
-    }
+    // if ($rogerMotifs && $rogerMotifsPresentation === 'highlight') {
+    //   $filteredData.transcript.forEach((d) => {
+    //     d.highlight = $rogerMotifs.some((motif) => motif.messages.includes(d.id));
+    //   });
+    // } else {
+    //   $filteredData.transcript.forEach((d) => {
+    //     d.highlight = false;
+    //   });
+    // }
     // Update filtered radar data based on active speakers
     $filteredData.radar = Array.isArray($radarData) && Array.isArray(speakers)
       ? $radarData.filter((d) => d && speakers.includes(d.speaker_id))
@@ -376,42 +376,42 @@
     console.log("filteredData: " , $filteredData);
   }
 
-  $: if ($filteredData.transcript && $rogerMotifs && $rogerMotifs.length > 0) {
-    const timeFilteredTranscript = $filterTimeRange ? $datasets.transcript.filter((d) => {
-      return d.start >= $filterTimeRange[0] && d.end <= $filterTimeRange[1];
-    }) : $datasets.transcript;
-
-    $aggregatedMotifsData = $rogerMotifs.map((motif) => {
-      const speakerMatches = {};
-      const motifMessageIds = new Set(motif.messages);
-      const speakerMessageCounts = {};
-
-      timeFilteredTranscript.forEach((message) => {
-        const { speaker, id } = message;
-        if (!speakerMessageCounts[speaker]) {
-          speakerMessageCounts[speaker] = { total: 0, matches: 0 };
-        }
-        speakerMessageCounts[speaker].total += 1;
-        if (motifMessageIds.has(id)) {
-          speakerMessageCounts[speaker].matches += 1;
-        }
-      });
-
-      // Calculate match percentage for each speaker
-      let otherMessages = 100;
-      Object.entries(speakerMessageCounts).forEach(([speaker, counts]) => {
-        speakerMatches[speaker] = (counts.matches / counts.total) * 100;
-        otherMessages -= speakerMatches[speaker];
-      });
-
-      speakerMatches.other = otherMessages;
-      speakerMatches.dimension = motif.description;
-
-      return speakerMatches;
-    });
-  } else {
-    $aggregatedMotifsData = [];
-  }
+  // $: if ($filteredData.transcript && $rogerMotifs && $rogerMotifs.length > 0) {
+  //   const timeFilteredTranscript = $filterTimeRange ? $datasets.transcript.filter((d) => {
+  //     return d.start >= $filterTimeRange[0] && d.end <= $filterTimeRange[1];
+  //   }) : $datasets.transcript;
+  //
+  //   $aggregatedMotifsData = $rogerMotifs.map((motif) => {
+  //     const speakerMatches = {};
+  //     const motifMessageIds = new Set(motif.messages);
+  //     const speakerMessageCounts = {};
+  //
+  //     timeFilteredTranscript.forEach((message) => {
+  //       const { speaker, id } = message;
+  //       if (!speakerMessageCounts[speaker]) {
+  //         speakerMessageCounts[speaker] = { total: 0, matches: 0 };
+  //       }
+  //       speakerMessageCounts[speaker].total += 1;
+  //       if (motifMessageIds.has(id)) {
+  //         speakerMessageCounts[speaker].matches += 1;
+  //       }
+  //     });
+  //
+  //     // Calculate match percentage for each speaker
+  //     let otherMessages = 100;
+  //     Object.entries(speakerMessageCounts).forEach(([speaker, counts]) => {
+  //       speakerMatches[speaker] = (counts.matches / counts.total) * 100;
+  //       otherMessages -= speakerMatches[speaker];
+  //     });
+  //
+  //     speakerMatches.other = otherMessages;
+  //     speakerMatches.dimension = motif.description;
+  //
+  //     return speakerMatches;
+  //   });
+  // } else {
+  //   $aggregatedMotifsData = [];
+  // }
 
   $: if ($datasets.ecg) {
     if ($filterTimeRange) {
@@ -478,12 +478,12 @@
   <div class="flex gap-4 px-4 mt-2 mb-2 justify-between">
     <SpeakersFilter bind:speakers {allSpeakers} />
     <div>
-      
+
     </div>
     <div class="flex gap-x-12">
-      <BinSizeInput bind:binSize />
+<!--      <BinSizeInput bind:binSize />-->
       <StressLevelInput bind:showStress />
-      <EmotionsInput />
+<!--      <EmotionsInput />-->
       <Search
         class=" p-1.5 ps-9 sm:text-sm font-semibold focus:ring-gray-500 focus:border-gray-500"
         style="width: calc(20rem - 14px);"

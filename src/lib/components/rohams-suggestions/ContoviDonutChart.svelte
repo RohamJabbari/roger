@@ -15,6 +15,7 @@
     let hovered = false;
     let hoverX = 0;
     let hoverY = 0;
+    
 
     let sectorData = [];
 
@@ -92,6 +93,27 @@
                 fill={topicColors[ i % topicColors.length ]}
                 stroke="#fff"
                 stroke-width="2"
+                on:mouseover={(e) => {
+                    if (tooltip) {
+                        hovered = true;
+                        const svg = e.currentTarget.ownerSVGElement;
+                        if (svg && svg.createSVGPoint) {
+                            const pt = svg.createSVGPoint();
+                            pt.x = e.clientX; pt.y = e.clientY;
+                            const ctm = svg.getScreenCTM();
+                            if (ctm) {
+                                const inv = ctm.inverse();
+                                const loc = pt.matrixTransform(inv);
+                                hoverX = loc.x; hoverY = loc.y;
+                            }
+                        }
+                    }
+                }}
+                on:mouseout={() => {
+                    if (tooltip) {
+                        hovered = false;
+                    }
+                }}
         />
         {#if showLabels}
             <line
@@ -133,6 +155,7 @@
 {/each}
 
   {#if tooltip && hovered}
-    <Tooltip x={hoverX} y={hoverY} title={null} infos={topics} values={topicSums} total={total} />
+    <Tooltip x={hoverX} y={hoverY} title={{ personId: "Overview", role: "All Topics" }} infos={topics} values={topicSums} total={total} />
   {/if}
+  
 </g>

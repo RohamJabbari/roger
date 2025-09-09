@@ -93,13 +93,29 @@ $: topicParticipationBySpeaker = (() => {
   const t = Math.floor($rogerTime || 0);
   const groupedObj = grouped || {};
   for (const [sid, entries] of Object.entries(groupedObj)) {
+    // First try to find active entries at current time
     const active = (entries || []).filter(d => {
       const s = (d.start_sec ?? d.start ?? d.startTime ?? 0);
       const e = (d.end_sec ?? d.end ?? d.endTime ?? s);
       return s <= t && e >= t;
     });
+    
+    let dataToUse = active;
+    // If no active entries, find the most recent entries before current time
+    if (active.length === 0) {
+      const pastEntries = (entries || []).filter(d => {
+        const e = (d.end_sec ?? d.end ?? d.endTime ?? (d.start_sec ?? d.start ?? d.startTime ?? 0));
+        return e <= t;
+      }).sort((a, b) => {
+        const aEnd = (a.end_sec ?? a.end ?? a.endTime ?? (a.start_sec ?? a.start ?? a.startTime ?? 0));
+        const bEnd = (b.end_sec ?? b.end ?? b.endTime ?? (b.start_sec ?? b.start ?? b.startTime ?? 0));
+        return bEnd - aEnd; // Sort by end time descending
+      });
+      dataToUse = pastEntries.slice(0, Math.min(5, pastEntries.length)); // Take up to 5 most recent
+    }
+    
     const vec = topicList.map(topic =>
-      active.reduce((acc, d) => acc + (d.topicMemberships?.[topic] ?? 0), 0)
+      dataToUse.reduce((acc, d) => acc + (d.topicMemberships?.[topic] ?? 0), 0)
     );
     map.set(+sid, vec);
   }
@@ -205,12 +221,9 @@ $: topicParticipationBySpeaker = (() => {
         {#each dummyConversations as person (person.personId)}
             {@const currentVec = topicParticipationBySpeaker.get(person.speakerId) || topicList.map(() => 0)}
             {@const sumValues = currentVec.reduce((a, b) => a + b, 0)}
-            {@const topicCenterAngles = topicList.map((_, i) => {
-                const angle = (topicSums[i] / total) * 360;
-                return topicSums.slice(0, i).reduce((a, b) => a + b, 0) / total * 360 + angle / 2;
-            })}
-            {@const weightedAngle = currentVec.reduce((acc, val, i) => acc + (sumValues > 0 ? (val / sumValues) * topicCenterAngles[i] : 0), 0)}
-            {@const normalizedWeight = sumValues > 0 ? sumValues / total : 0}
+            {@const staticTopicAngles = topicList.map((_, i) => (i / topicList.length) * 360)}
+            {@const weightedAngle = currentVec.reduce((acc, val, i) => acc + (sumValues > 0 ? (val / sumValues) * staticTopicAngles[i] : 0), 0)}
+            {@const normalizedWeight = sumValues > 0 ? Math.min(sumValues, total) / (total || 1) : 0}
             {@const r = innerRadius * (0.5 + 0.5 * normalizedWeight)}
             {@const pos = polarToCartesian(centerX, centerY, r, weightedAngle)}
 

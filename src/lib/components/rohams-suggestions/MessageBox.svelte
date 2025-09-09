@@ -14,6 +14,11 @@
 
     const clampedAvg = Math.max(-100, Math.min(100, typeof message.valence === 'number' ? message.valence : 0));
     $: boxGlow = `0 0 20px rgba(${255 - ((clampedAvg + 100) * 1.275)}, ${(clampedAvg + 100) * 1.275}, 0, 0.6)`;
+    
+    // Tooltip state
+    let showTooltip = false;
+    let tooltipX = 0;
+    let tooltipY = 0;
 
     function parseTime(seconds) {
         const mins = Math.floor(seconds / 60);
@@ -41,6 +46,15 @@
                 background-color: {$speakerColorScale ? $speakerColorScale(message.speaker) : color};
                 border-top-left-radius: 5px;
                 border-bottom-left-radius: 5px;"
+            on:mouseenter={(e) => {
+                showTooltip = true;
+                const rect = e.currentTarget.getBoundingClientRect();
+                tooltipX = rect.left - 10;
+                tooltipY = rect.top + rect.height / 2;
+            }}
+            on:mouseleave={() => {
+                showTooltip = false;
+            }}
         >
             {#if $showEmotions}
                 <div class="scale-90">
@@ -76,3 +90,15 @@
         </div>
     </div>
 </div>
+
+<!-- SAM Values Tooltip -->
+{#if showTooltip}
+    <div 
+        class="fixed bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg z-50 pointer-events-none"
+        style="right: {window.innerWidth - tooltipX}px; top: {tooltipY - 25}px;"
+    >
+        <div>Arousal: {message.arousal ?? 'N/A'} (Level: {message.arousal_level ?? 'N/A'})</div>
+        <div>Valence: {message.valence ?? 'N/A'} (Level: {message.valence_level ?? 'N/A'})</div>
+        <div>Dominance: {message.dominance ?? 'N/A'} (Level: {message.dominance_level ?? 'N/A'})</div>
+    </div>
+{/if}

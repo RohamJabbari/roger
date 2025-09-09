@@ -2,7 +2,8 @@
   import StackedBarChart from "$lib/components/StackedBarChart.svelte";
   import {
     aggregatedData,
-    radarData
+    radarData,
+    filteredData
   } from "$lib/stores/app";
   import {
     speakerColorScale,
@@ -11,6 +12,7 @@
   import { stressLevelColorScale, stressLevelColorScalePub, stressLevels } from "$lib/utils";
   import StressLevelLegend from "./header/StressLevelLegend.svelte";
   import TraitsRadar from "$lib/components/rohams-suggestions/TraitsRadar.svelte";
+  import TopicBarChart from "$lib/components/rohams-suggestions/TopicBarChart.svelte";
 
 
 
@@ -63,22 +65,27 @@
 <!--      />-->
 <!--    </div>-->
 
+<!--    <div class="w-full">-->
+<!--      <div class="flex justify-between">-->
+<!--        <div class="font-semibold">Stress</div>-->
+<!--        <div class="mr-3 flex text-gray-700 gap-x-2 items-center font-semibold text-xs" style="font-size: .7rem !important; margin-right: 20px;">-->
+<!--          Low-->
+<!--          <StressLevelLegend />-->
+<!--          High-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <StackedBarChart-->
+<!--              data={$aggregatedData.stress}-->
+<!--              margin={{ top: 0, right: 20, bottom: 20, left: 30 }}-->
+<!--              segments={[0,1,2,3]}-->
+<!--              colorScale={stressLevelColorScalePub}-->
+<!--              containerWidth={summaryColumnWidth}-->
+<!--      />-->
+<!--    </div>-->
+
     <div class="w-full">
-      <div class="flex justify-between">
-        <div class="font-semibold">Stress</div>
-        <div class="mr-3 flex text-gray-700 gap-x-2 items-center font-semibold text-xs" style="font-size: .7rem !important; margin-right: 20px;">
-          Low
-          <StressLevelLegend />
-          High
-        </div>
-      </div>
-      <StackedBarChart
-              data={$aggregatedData.stress}
-              margin={{ top: 0, right: 20, bottom: 20, left: 30 }}
-              segments={[0,1,2,3]}
-              colorScale={stressLevelColorScalePub}
-              containerWidth={summaryColumnWidth}
-      />
+      <div class="font-semibold">Topics by Participant</div>
+      <TopicBarChart {speakers} />
     </div>
 
 

@@ -11,7 +11,6 @@
     preprocessECG,
     preprocessVoiceMetrics,
     aggregateStressData,
-    topicList,
   } from "$lib/dataProcessing";
 
   // App UI components
@@ -411,11 +410,7 @@
       />
       <!-- Topic-space visualization -->
       {#if $rogerMode == "topic"}
-        <TopicSpace
-                topics={topicList}
-                {speakers}
-                data={$filteredData?.transcript}
-        />
+        <TopicSpace/>
       {/if}
       <!-- Conversation summary view -->
       {#if $rogerMode == "summary"}

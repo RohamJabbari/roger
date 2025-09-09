@@ -1,5 +1,4 @@
 [
-  { "time": 18, "description": "Tango discharge", "color": "hsl(0, 80%, 70%)" },
-  { "time": 23, "description": "Tango discharge", "color": "hsl(0, 80%, 70%)" },
-  { "time": 50, "description": "Tango discharge", "color": "hsl(0, 80%, 70%)" }
+  { "time": 291, "description": "Tango discharge 2", "color": "hsl(0, 80%, 70%)" },
+  { "time": 23, "description": "Tango discharge 1", "color": "hsl(0, 80%, 70%)" }
 ]

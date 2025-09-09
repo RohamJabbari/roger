@@ -8,6 +8,13 @@
     export let innerRadius;
     export let polarToCartesian;
     export let showLabels = true;
+    export let tooltip = false;
+
+    import Tooltip from "$lib/components/rohams-suggestions/ContoviTooltip.svelte";
+
+    let hovered = false;
+    let hoverX = 0;
+    let hoverY = 0;
 
     let sectorData = [];
 
@@ -60,6 +67,24 @@
 </script>
 
 <!-- Donut Arcs and Labels -->
+<g
+  on:mouseover={() => { hovered = true; hoverX = centerX; hoverY = centerY; }}
+  on:mouseout={() => { hovered = false; }}
+  on:mousemove={(e) => {
+    // try to use SVG coords; fallback to center
+    const svg = e.currentTarget.ownerSVGElement;
+    if (svg && svg.createSVGPoint) {
+      const pt = svg.createSVGPoint();
+      pt.x = e.clientX; pt.y = e.clientY;
+      const ctm = svg.getScreenCTM();
+      if (ctm) {
+        const inv = ctm.inverse();
+        const loc = pt.matrixTransform(inv);
+        hoverX = loc.x; hoverY = loc.y;
+      } else { hoverX = centerX; hoverY = centerY; }
+    } else { hoverX = centerX; hoverY = centerY; }
+  }}
+>
 {#each sectorData as { cat, i, startAngle, endAngle, donutEdge, labelPos } (cat)}
     <g>
         <path
@@ -106,3 +131,8 @@
             stroke-width="1"
     />
 {/each}
+
+  {#if tooltip && hovered}
+    <Tooltip x={hoverX} y={hoverY} title={null} infos={topics} values={topicSums} total={total} />
+  {/if}
+</g>

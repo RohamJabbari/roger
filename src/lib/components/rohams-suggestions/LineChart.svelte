@@ -42,6 +42,26 @@ const handleOrient = () => requestAnimationFrame(measureNow);
     let tooltip = { visible: false, x: 0, y: 0, datum: null };
     let xScale; // local, per-chart scale derived from timelineScale
 
+  // Map speaker id -> display name (prefer nameTag from data, then speakers[].name)
+  $: speakerNameById = (() => {
+      const map = new Map();
+      if (Array.isArray(data)) {
+          for (const d of data) {
+              const id = d?.speaker;
+              const nm = d?.nameTag || d?.name || d?.speaker_name;
+              if (id != null && nm && !map.has(id)) map.set(id, nm);
+          }
+      }
+      if (Array.isArray(speakers)) {
+          for (const s of speakers) {
+              const id = (s && typeof s === 'object') ? (s.id ?? s.value ?? s.key) : s;
+              const nm = (s && typeof s === 'object') ? (s.name ?? s.label ?? s.nameTag) : undefined;
+              if (id != null && nm && !map.has(id)) map.set(id, nm);
+          }
+      }
+      return map;
+  })();
+
 onMount(() => {
     // Initial measure (handles first visible render)
     measureNow();
@@ -131,6 +151,12 @@ onDestroy(() => {
             .curve(curveMonotoneX)(clean);
     }
 
+    function formatTime(sec) {
+        const minutes = Math.floor(sec / 60);
+        const seconds = Math.floor(sec % 60).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
+    }
+
     let paths = [];
     $: if (xScale && yScale && speakers?.length && data?.length) {
         paths = speakers.map((speaker, i) => {
@@ -153,7 +179,8 @@ onDestroy(() => {
                     ...d,
                     x: xScale(d.start),
                     y: yScale(getY(d)) - i * 2,
-                    color: get(speakerColorScale)(speakerId)
+                    color: get(speakerColorScale)(speakerId),
+                    displayName: speakerNameById.get(speakerId) ?? d?.nameTag ?? `Speaker ${speakerId}`
                 }));
         });
     }
@@ -231,8 +258,8 @@ onDestroy(() => {
                 class="absolute pointer-events-none z-10 text-xs bg-white border border-gray-300 shadow rounded px-3 py-2"
                 style="left: {tooltip.x + 10}px; top: {tooltip.y + 10}px; font-size: 11px; line-height: 1.3;"
         >
-            <div><strong>time:</strong> {tooltip.datum.start.toFixed(1)}s</div>
-            <div><strong>speaker:</strong> {tooltip.datum.speaker}</div>
+            <div><strong>time:</strong> {tooltip.datum.start.toFixed(1)}s ({formatTime(tooltip.datum.start)})</div>
+            <div><strong>speaker:</strong> {tooltip.datum.displayName ?? tooltip.datum.nameTag ?? tooltip.datum.speaker}</div>
             <div><strong>stress:</strong> {(tooltip.datum.stress ?? tooltip.datum.stress_level)?.toFixed(3)}</div>
         </div>
     {/if}

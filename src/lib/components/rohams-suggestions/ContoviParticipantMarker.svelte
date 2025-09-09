@@ -1,6 +1,8 @@
 <script>
     import Tooltip from "$lib/components/rohams-suggestions/ContoviTooltip.svelte";
     import DonutChart from "$lib/components/rohams-suggestions/ContoviDonutChart.svelte";
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing';
 
     export let person;
     export let pos;
@@ -14,14 +16,41 @@
     export let outerRadius = 80;
     export let innerRadius = 36;
 
+    export let currentSecond = 0;
+
+export let topicParticipation = [];
+
+    // Cache last non-empty participation so the donut stays visible between updates
+    let lastTopicParticipation = [];
+    let lastSum = 0;
+
+$: sum = Array.isArray(topicParticipation) ? topicParticipation.reduce((a,b)=> a + (+b || 0), 0) : 0;
+
+$: if (sum > 0) {
+        lastTopicParticipation = topicParticipation;
+        lastSum = sum;
+    }
+
     let isHovered = false;
     let groupElement;
 
-    // Compute topicTotals
-    const topicTotals = topics.map(cat =>
-        person.utterances.filter(u => u.topic === cat).reduce((sum, u) => sum + u.value, 0)
-    );
-    const sum = topicTotals.reduce((a, b) => a + b, 0);
+    // Tweened motion for smooth position + subtle fade-in
+    const animDuration = 400;
+    const tx = tweened(pos?.x ?? 0, { duration: animDuration, easing: cubicOut });
+    const ty = tweened(pos?.y ?? 0, { duration: animDuration, easing: cubicOut });
+    const topacity = tweened(0, { duration: 250, easing: cubicOut });
+
+    // Initialize animated state on mount
+    import { onMount } from 'svelte';
+    onMount(() => {
+        tx.set(pos?.x ?? 0);
+        ty.set(pos?.y ?? 0);
+        topacity.set(1);
+    });
+
+    // Whenever the target position prop changes, tween to the new spot
+    $: if (pos?.x !== undefined) tx.set(pos.x);
+    $: if (pos?.y !== undefined) ty.set(pos.y);
 
     function handleEnter() {
         isHovered = true;
@@ -41,22 +70,23 @@
         on:mouseleave={handleLeave}
         tabindex="0"
         role="button"
+        style="opacity: {$topacity};"
 >
     <circle
-            cx={pos.x}
-            cy={pos.y}
+            cx={$tx}
+            cy={$ty}
             r={10}
             fill={person.color}
             stroke={person.color}
             stroke-width="2"
     />
 
-    {#if sum > 0}
-        <g transform={`translate(${pos.x}, ${pos.y}) scale(0.25)`}>
+    {#if lastSum > 0}
+        <g transform={`translate(${$tx}, ${$ty}) scale(0.25)`}>
             <DonutChart
                     {topics}
-                    topicSums={topicTotals}
-                    total={sum}
+                    topicSums={lastTopicParticipation}
+                    total={lastSum}
                     {centerX}
                     {centerY}
                     {outerRadius}
@@ -68,7 +98,7 @@
     {/if}
 
     {#if isHovered}
-        <Tooltip x={pos.x} y={pos.y} title={person} infos={topics} />
+        <Tooltip x={$tx} y={$ty} title={person} infos={topics} values={lastTopicParticipation} total={lastSum} />
     {/if}
 </g>
 
